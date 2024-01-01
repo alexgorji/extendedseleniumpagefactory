@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>
+        Create Demo Item
+    </title>
+</head>
+<body>
+{% include 'demo_nav.html' with tax_return=tax_return %}
+<main>
+    <h1>CREATE ITEM</h1>
+    <form method="post" novalidate>
+        <div>
+            <p><label for="id_name">Name:</label></p>
+            <p><input type="text" name="name" maxlength="100" id="id_name"></p>
+        </div>
+
+        <div>
+            <p><label for="id_project">Project:</label></p>
+            <p><select name="project" id="id_project">
+                <option value="" selected>---------</option>
+                <option value="3">An important project</option>
+                <option value="6">Another important project</option>
+            </select></p>
+        </div>
+
+        <div>
+            <p><label for="id_comment">Comment:</label></p>
+            <p><textarea name="comment" cols="40" rows="10" id="id_comment">
+            </textarea></p>
+        </div>
+
+        <input type="submit" name="demo-create-save" value="Save">
+        <input type="submit" name="demo-create-save-and-new" value="Save & New">
+        <input type="submit" name="demo-create-save-and-duplicate" value="Save & Duplicate">
+        <!--        <input type="submit" name="demo-create-cancel" value="Cancel">-->
+        <a href="{% url 'demo_items' %}">Cancel</a>
+    </form>
+</main>
+</body>
+</html>

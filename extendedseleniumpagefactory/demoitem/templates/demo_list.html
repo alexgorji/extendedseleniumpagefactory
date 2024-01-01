@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>
+        Demo Items
+    </title>
+</head>
+<body>
+<main>
+    {% include 'demo_nav.html' with tax_return=tax_return %}
+    <h1>DEMO ITEMS</h1>
+    <p class="action-link"><a href="{% url 'demo_create_item' %}">Add Item</a></p>
+    <br>
+    <table id="id_item_list">
+        <tr>
+            <th>
+                <div>Date</div>
+            </th>
+            <th>
+                <div>Item</div>
+            </th>
+            <th>
+                <div>Sum</div>
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>2002-02-03</td>
+            <td><a href="">first something</a></td>
+            <td>€ 100.00</td>
+            <td><a href="">Edit</a></td>
+            <td><a href="">Duplicate</a></td>
+            <td><a href="">Delete</a></td>
+        </tr>
+        <tr>
+            <td>2002-02-02</td>
+            <td><a href="">second something</a></td>
+            <td>€ 90.00</td>
+            <td><a href="">Edit</a></td>
+            <td><a href="">Duplicate</a></td>
+            <td><a href="">Delete</a></td>
+        </tr>
+        <tr>
+            <td>2002-02-04</td>
+            <td><a href="">third something</a></td>
+            <td>€ 110.00</td>
+            <td><a href="">Edit</a></td>
+            <td><a href="">Duplicate</a></td>
+            <td><a href="">Delete</a></td>
+        </tr>
+    </table>
+</main>
+</body>
+</html>
