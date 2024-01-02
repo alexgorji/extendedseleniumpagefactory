@@ -1,2 +1,1 @@
 selenium-page-factory==2.6
-Django==5.0

@@ -1,13 +1,9 @@
-import os
 from datetime import datetime
 from pathlib import Path
-from time import sleep
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from django.urls import reverse
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
 
 SCREEN_DUMP_LOCATION = Path(__file__).parent / 'screendumps'
 
@@ -32,7 +28,7 @@ class FunctionalTest(StaticLiveServerTestCase):
         super().tearDown()
 
     def _test_has_failed(self):
-        return any(error for (methode, error) in self._outcome.errors)
+        return any(error for (methode, error) in self._outcome.result.errors)
 
     def take_screenshot(self):
         filename = self._get_filename() + '.png'
