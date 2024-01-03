@@ -16,8 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: xvfb
-      run: sudo apt-get install -y xvfb
+#    - name: xvfb
+#      run: sudo apt-get install -y xvfb
     - name: Set up Python 3.11
       uses: actions/setup-python@v2
       with:
@@ -29,4 +29,4 @@ jobs:
         pip install -r test_requirements.txt
     - name: Test
       run: |
-        xvfb-run pytest extendedseleniumpagefactory/demoitem/functionaltests
+        python -m pytest extendedseleniumpagefactory/demoitem/functionaltests

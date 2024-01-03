@@ -29,3 +29,4 @@ class TesDemoItems(FunctionalTest):
         demo_create_page.demo_items_links.click()
         demo_list_page.assert_page()
         demo_list_page.demo_projects_links.click()
+        # demo_create_page.assert_page()

@@ -8,22 +8,24 @@ from selenium.webdriver.chrome.options import Options
 SCREEN_DUMP_LOCATION = Path(__file__).parent / 'screendumps'
 
 
+###!!! dump does not work with pytest. self._outcome.result.error raise an exception.
+
 class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self) -> None:
         chrome_options = Options()
-        # chrome_options.add_argument("--headless=new")
+        chrome_options.add_argument("--headless=new")
         self.driver = webdriver.Chrome(options=chrome_options)
         super().setUp()
 
     def tearDown(self) -> None:
-        if self._test_has_failed():
-            if not Path.exists(SCREEN_DUMP_LOCATION):
-                SCREEN_DUMP_LOCATION.mkdir()
-            for ix, handle in enumerate(self.driver.window_handles):
-                self._windowid = ix
-                self.driver.switch_to.window(handle)
-                self.take_screenshot()
-                self.dump_html()
+        # if self._test_has_failed():
+        #     if not Path.exists(SCREEN_DUMP_LOCATION):
+        #         SCREEN_DUMP_LOCATION.mkdir()
+        #     for ix, handle in enumerate(self.driver.window_handles):
+        #         self._windowid = ix
+        #         self.driver.switch_to.window(handle)
+        #         self.take_screenshot()
+        #         self.dump_html()
         self.driver.quit()
         super().tearDown()
 
