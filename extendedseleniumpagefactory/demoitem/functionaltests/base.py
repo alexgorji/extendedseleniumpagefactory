@@ -8,7 +8,9 @@ from selenium.webdriver.chrome.options import Options
 SCREEN_DUMP_LOCATION = Path(__file__).parent / 'screendumps'
 
 
-###!!! dump does not work with pytest. self._outcome.result.error raise an exception.
+# !!! dump does not work with pytest. self._outcome.result.error raise an exception. Taking screen shots with pytest
+# are more complicated. You need to learn first about fixtures, request, hooks etc in pytest. Integration allure
+# could be also helpful feature.
 
 class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self) -> None:
@@ -17,25 +19,32 @@ class FunctionalTest(StaticLiveServerTestCase):
         self.driver = webdriver.Chrome(options=chrome_options)
         super().setUp()
 
+    def _take_screenshot(self):
+        filename = self._get_filename() + '.png'
+        print('screenshotting to', filename)
+        self.driver.get_screenshot_as_file(filename)
+
+    def take_screenshot(self):
+        if not Path.exists(SCREEN_DUMP_LOCATION):
+            SCREEN_DUMP_LOCATION.mkdir()
+        for ix, handle in enumerate(self.driver.window_handles):
+            self._windowid = ix
+            self.driver.switch_to.window(handle)
+            self._take_screenshot()
+            self.dump_html()
+
     def tearDown(self) -> None:
-        # if self._test_has_failed():
-        #     if not Path.exists(SCREEN_DUMP_LOCATION):
-        #         SCREEN_DUMP_LOCATION.mkdir()
-        #     for ix, handle in enumerate(self.driver.window_handles):
-        #         self._windowid = ix
-        #         self.driver.switch_to.window(handle)
-        #         self.take_screenshot()
-        #         self.dump_html()
+        # Attribute is raised when testing with pytest
+        try:
+            if self._test_has_failed():
+                self.take_screenshot()
+        except AttributeError:
+            pass
         self.driver.quit()
         super().tearDown()
 
     def _test_has_failed(self):
         return any(error for (methode, error) in self._outcome.result.errors)
-
-    def take_screenshot(self):
-        filename = self._get_filename() + '.png'
-        print('screenshotting to', filename)
-        self.driver.get_screenshot_as_file(filename)
 
     def dump_html(self):
         filename = self._get_filename() + '.html'
