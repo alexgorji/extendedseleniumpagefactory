@@ -19,7 +19,7 @@ class DemoCreatePage(ExtendedPageFactory):
 
     title = 'Create Demo Item'
 
-    form_buttons = ['save', 'save_and_new', ('cancel', 'LINK_TEXT')]
+    form_buttons = ['save', 'save_and_new', ('cancel', 'LINK_TEXT'), 'save_and_delete']
 
 
 class DemoListPage(ExtendedPageFactory):

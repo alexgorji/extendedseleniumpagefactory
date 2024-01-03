@@ -53,28 +53,39 @@ class FormButtonsMixin:
                     f"input[value='{' '.join([x.capitalize() for x in key.replace('and', '&').split('_')])}']")
         return output
 
-    def _max_window_and_scroll_down(self, time):
+    def _max_window_and_scroll_down(self):
         self.driver.maximize_window()
         self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-        sleep(time)
 
     def _click(self, loc):
-        return self.__getattr__(loc).click
+        def f(time=None):
+            if time:
+                sleep(time)
+            self.__getattr__(loc).click()
 
-    def _scroll_down_and_click(self, time, loc):
-        self._max_window_and_scroll_down(time)
-        self._click(loc)
+        return f
+
+    def _scroll_down_and_click(self, loc):
+        self._max_window_and_scroll_down()
+        return self._click(loc)
 
     def __getattr__(self, item):
-        try:
-            locator = re.search(r'^scrolldown_and_click_(.*)', item).group(1)
-            return self._scroll_down_and_click(time=0.5, loc=locator)
-        except AttributeError:
-            try:
-                locator = re.search(r'^click_(.*)', item).group(1)
-                return self._click(loc=locator)
-            except AttributeError:
-                return super().__getattr__(item)
+        search = re.search(r'^scroll_down_and_click_(.*)', item)
+        if search:
+            locator = search.group(1)
+            return self._scroll_down_and_click(loc=locator)
+
+        search = re.search(r'^scrolldown_and_click_(.*)', item)
+        if search:
+            locator = search.group(1)
+            return self._scroll_down_and_click(loc=locator)
+
+        search = re.search(r'^click_(.*)', item)
+        if search:
+            locator = search.group(1)
+            return self._click(loc=locator)
+
+        return super().__getattr__(item)
 
 
 class ExtendedPageFactory(AssertPageMixin, NavLocatorsMixin, FormButtonsMixin, PageFactory):

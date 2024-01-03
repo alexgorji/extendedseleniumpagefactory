@@ -23,8 +23,12 @@ class TesDemoItems(FunctionalTest):
         demo_create_page.name.set_text('Testing a')
         demo_create_page.click_save_and_new()
         "She adds as another name and clicks the save button."
+        self.driver.get(f"{self.live_server_url}{reverse('demo_create_item')}")
         demo_create_page.name.set_text('Testing b')
         demo_create_page.click_save()
+        "She scrolls down and finds at the bottom of the page a button to save and delete. What does it do? She trys " \
+        "it out."
+        demo_create_page.scroll_down_and_click_save_and_delete(time=1)
         "She tests if both nav links work."
         demo_create_page.demo_items_links.click()
         demo_list_page.assert_page()
