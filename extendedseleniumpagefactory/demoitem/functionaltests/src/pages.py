@@ -1,4 +1,4 @@
-from extendedseleniumpagefactory.extendedpagefactory import ExtendedPageFactory
+from extendedseleniumpagefactory import ExtendedPageFactory
 
 NAV_LOCATORS = {
     'demo_items_links': ('LINK_TEXT', 'Demo Items'),
