@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -7,15 +8,17 @@ from selenium.webdriver.chrome.options import Options
 
 SCREEN_DUMP_LOCATION = Path(__file__).parent / 'screendumps'
 
-
 # !!! dump does not work with pytest. self._outcome.result.error raise an exception. Taking screen shots with pytest
 # are more complicated. You need to learn first about fixtures, request, hooks etc in pytest. Integration allure
 # could be also helpful feature.
 
+
 class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self) -> None:
+        headless = os.getenv('HEADLESS', default='True')
         chrome_options = Options()
-        chrome_options.add_argument("--headless=new")
+        if headless not in ('False', 'false'):
+            chrome_options.add_argument("--headless=new")
         self.driver = webdriver.Chrome(options=chrome_options)
         super().setUp()
 

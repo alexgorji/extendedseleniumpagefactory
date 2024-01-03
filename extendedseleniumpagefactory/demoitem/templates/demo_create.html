@@ -1,3 +1,4 @@
+{% load demo_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 {% include 'demo_nav.html' with tax_return=tax_return %}
 <main>
     <h1>CREATE ITEM</h1>
-    <form method="post" novalidate>
+    <form>
         {% csrf_token %}
         <div>
             <p><label for="id_name">Name:</label></p>
@@ -33,12 +34,16 @@
             </textarea></p>
         </div>
 
-        <input type="text" name="demo-create-save" value="Save">
-        <input type="text" name="demo-create-save-and-new" value="Save & New">
-        <input type="text" name="demo-create-save-and-duplicate" value="Save & Duplicate">
+        <input type="submit" name="demo-create-save" value="Save">
+        <input type="submit" name="demo-create-save-and-new" value="Save & New">
+        <input type="submit" name="demo-create-save-and-duplicate" value="Save & Duplicate">
         <!--        <input type="submit" name="demo-create-cancel" value="Cancel">-->
         <a href="{% url 'demo_items' %}">Cancel</a>
     </form>
+    {% for number in 20|times %}
+        <p>{{ number }}</p>
+    {% endfor %}
+    <input type="submit" name="demo-create-save-and-delete" value="Save & Delete">
 </main>
 </body>
 </html>
