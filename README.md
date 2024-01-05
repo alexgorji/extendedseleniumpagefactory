@@ -19,7 +19,7 @@ link: `<a href="">Cancel</a>`, add (cancel, "LINK_TEXT") to form_buttons.
 This class provides click methods for each input or link according to form_buttons list: click_save(),
 click_save_and_new(), click_delete() and click_cancel() would be the click methods in our example case.
 Other methods with scrolling down before clicking a button (scroll_down_and_click_...) are also available for each form
-button. click_ and scroll_down_and_click_ methods accept a time argument for setting time.sleep before clicking. For
-example scroll_down_and_click_save(time=3) does following actions: 1. maximizing the window 2. scrolling down to bottom
-of the window 3. sleep for 3 seconds (important if scrolling down to bottom takes a while ...)
+button. click_ and scroll_down_and_click_ methods accept a timeout argument for setting Page.timeout before clicking. For
+example scroll_down_and_click_save(timeout=3) does following actions: 1. maximizing the window 2. scrolling down to bottom
+of the window 3. set explicit wait for the save button for 3 seconds (default timeout of Page is 10)
 

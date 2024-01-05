@@ -34,3 +34,11 @@ class DemoListPage(ExtendedPageFactory):
     nav_locators = NAV_LOCATORS
 
     title = 'Demo Items'
+
+
+class DemoLoadElementPage(ExtendedPageFactory):
+    def __init__(self, driver, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.driver = driver
+
+    form_buttons = ['save']

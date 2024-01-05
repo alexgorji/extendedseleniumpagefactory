@@ -1,7 +1,11 @@
 from django.urls import reverse
+from selenium.common import NoSuchElementException
+from selenium.webdriver.common.by import By
+from seleniumpagefactory.Pagefactory import ElementNotFoundException
 
 from extendedseleniumpagefactory.demoitem.functionaltests.base import FunctionalTest
-from extendedseleniumpagefactory.demoitem.functionaltests.src.pages import DemoCreatePage, DemoListPage
+from extendedseleniumpagefactory.demoitem.functionaltests.src.pages import DemoCreatePage, DemoListPage, \
+    DemoLoadElementPage
 
 
 class TesDemoItems(FunctionalTest):
@@ -28,8 +32,20 @@ class TesDemoItems(FunctionalTest):
         demo_create_page.click_save()
         "She scrolls down and finds at the bottom of the page a button to save and delete. What does it do? She trys " \
         "it out."
-        demo_create_page.scroll_down_and_click_save_and_delete(time=1)
+        demo_create_page.scroll_down_and_click_save_and_delete()
         "She tests if both nav links work."
         demo_create_page.demo_items_links.click()
         demo_list_page.assert_page()
         demo_list_page.demo_projects_links.click()
+
+    def test_wait_for_element_load(self):
+        demo_load_element_page = DemoLoadElementPage(self.driver)
+        self.driver.get(f"{self.live_server_url}{reverse('demo_load_element')}")
+        with self.assertRaises(NoSuchElementException):
+            self.driver.find_element(By.CSS_SELECTOR, "input[value='Save']").click()
+        demo_load_element_page.click_save()
+        self.driver.refresh()
+        with self.assertRaises(ElementNotFoundException):
+            demo_load_element_page.click_save(timeout=0)
+        self.driver.refresh()
+        demo_load_element_page.click_save(timeout=10)

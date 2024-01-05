@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="timer_save"></div>
+</body>
+<script>
+    $(document).ready(function () {
+            $("#timer_save").text("timer starts");
+            const arr = [0, 1, 2, 3, 4, 5]
+            $.each(arr, function (index, value) {
+                setTimeout(() => {
+                    $("#timer_save").text(value);
+                }, (value + 1) * 1000)
+            });
+            setTimeout(() => {
+                $("#timer_save").html('<input type="submit" name="demo-save" value="Save">');
+            }, (6 + 1) * 1000)
+        }
+    )
+</script>
+</html>

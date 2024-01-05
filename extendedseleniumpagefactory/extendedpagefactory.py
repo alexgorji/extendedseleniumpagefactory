@@ -58,9 +58,9 @@ class FormButtonsMixin:
         self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 
     def _click(self, loc):
-        def f(time=None):
-            if time:
-                sleep(time)
+        def f(timeout=None):
+            if timeout is not None:
+                self.timeout = timeout
             self.__getattr__(loc).click()
 
         return f
