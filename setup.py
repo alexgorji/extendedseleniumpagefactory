@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="extended-selenium-page-factory",
-    version="0.5beta",
+    version="0.6beta",
     author="Alex Gorji",
     author_email="aligorji@hotmail.com",
     description="Extension for page factory.",
