@@ -1,0 +1,85 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>
+        Create Demo Item
+    </title>
+</head>
+<body>
+<nav>
+    <p><a href="/demo-items/">Demo Items</a> <a href="">Demo Projects</a></p>
+</nav>
+<main>
+    <h1>CREATE ITEM</h1>
+    <form>
+        <input type="hidden" name="csrfmiddlewaretoken" value="lcByXmC1bgsTwlhMjR6fFI0cxlAHlPRJqcS0YT9Crsheeo5sYKgpDofQ8ybZpEbt">
+        <div>
+            <p><label for="id_name">Name:</label></p>
+            <p><input type="text" name="name" maxlength="100" id="id_name"></p>
+        </div>
+
+        <div>
+            <p><label for="id_project">Project:</label></p>
+            <p><select name="project" id="id_project">
+                <option value="" selected="">---------</option>
+                <option value="3">An important project</option>
+                <option value="6">Another important project</option>
+            </select></p>
+        </div>
+
+        <div>
+            <p><label for="id_comment">Comment:</label></p>
+            <p><textarea name="comment" cols="40" rows="10" id="id_comment">            </textarea></p>
+        </div>
+
+        <input type="submit" name="demo-create-save" value="Save">
+        <input type="submit" name="demo-create-save-and-new" value="Save &amp; New">
+        <input type="submit" name="demo-create-save-and-duplicate" value="Save &amp; Duplicate">
+        <!--        <input type="submit" name="demo-create-cancel" value="Cancel">-->
+        <a href="/demo-items/">Cancel</a>
+    </form>
+    
+        <p>0</p>
+    
+        <p>1</p>
+    
+        <p>2</p>
+    
+        <p>3</p>
+    
+        <p>4</p>
+    
+        <p>5</p>
+    
+        <p>6</p>
+    
+        <p>7</p>
+    
+        <p>8</p>
+    
+        <p>9</p>
+    
+        <p>10</p>
+    
+        <p>11</p>
+    
+        <p>12</p>
+    
+        <p>13</p>
+    
+        <p>14</p>
+    
+        <p>15</p>
+    
+        <p>16</p>
+    
+        <p>17</p>
+    
+        <p>18</p>
+    
+        <p>19</p>
+    
+    <input type="submit" name="demo-create-save-and-delete" value="Save &amp; Delete">
+</main>
+
+</body></html>

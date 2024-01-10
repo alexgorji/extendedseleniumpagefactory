@@ -3,9 +3,8 @@ from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 from seleniumpagefactory.Pagefactory import ElementNotFoundException
 
-from extendedseleniumpagefactory.demoitem.functionaltests.base import FunctionalTest
-from extendedseleniumpagefactory.demoitem.functionaltests.src.pages import DemoCreatePage, DemoListPage, \
-    DemoLoadElementPage
+from . base import FunctionalTest
+from . src.pages import DemoCreatePage, DemoListPage, DemoLoadElementPage
 
 
 class TesDemoItems(FunctionalTest):
@@ -32,7 +31,7 @@ class TesDemoItems(FunctionalTest):
         demo_create_page.click_save()
         "She scrolls down and finds at the bottom of the page a button to save and delete. What does it do? She trys " \
         "it out."
-        demo_create_page.scroll_down_and_click_save_and_delete()
+        demo_create_page.click_save_and_delete()
         "She tests if both nav links work."
         demo_create_page.demo_items_links.click()
         demo_list_page.assert_page()

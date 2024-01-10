@@ -29,6 +29,6 @@ jobs:
           pip install -r test_requirements.txt
       - name: Test
         run: |
-          python -m pytest extendedseleniumpagefactory/demoitem/functionaltests
+          python -m pytest
 #        PYTHONPATH=. python extendedseleniumpagefactory/demoitem/manage.py test extendedseleniumpagefactory/demoitem/functionaltests/
 
