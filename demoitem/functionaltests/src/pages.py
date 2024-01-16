@@ -3,6 +3,7 @@ from extendedseleniumpagefactory import ExtendedPageFactory
 NAV_LOCATORS = {
     'demo_items_links': ('LINK_TEXT', 'Demo Items'),
     'demo_projects_links': ('LINK_TEXT', 'Demo Projects'),
+    'demo_item_link': ('LINK_TEXT', 'Demo Item'),
 }
 
 
@@ -28,7 +29,8 @@ class DemoListPage(ExtendedPageFactory):
         self.driver = driver
 
     locators = {
-        'add_item_link': ('LINK_TEXT', 'Add Item')
+        'add_item_link': ('LINK_TEXT', 'Add Item'),
+        'demo_item_link': ('LINK_TEXT', 'Demo Item')
     }
 
     nav_locators = NAV_LOCATORS
@@ -42,3 +44,13 @@ class DemoLoadElementPage(ExtendedPageFactory):
         self.driver = driver
 
     form_buttons = ['save']
+
+
+class DemoDetailPage(ExtendedPageFactory):
+    def __init__(self, driver, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.driver = driver
+
+    nav_locators = NAV_LOCATORS
+
+    title = 'Demo Item'

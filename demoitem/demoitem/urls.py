@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('demo-items/', TemplateView.as_view(template_name='demo_list.html'), name='demo_items'),
     path('demo-create-item/', TemplateView.as_view(template_name='demo_create.html'), name='demo_create_item'),
-    path('demo-load-element', TemplateView.as_view(template_name='demo_load_element.html'), name='demo_load_element')
+    path('demo-load-element', TemplateView.as_view(template_name='demo_load_element.html'), name='demo_load_element'),
+    path('demo-item-detail/', TemplateView.as_view(template_name='demo_detail.html'), name='demo_item_detail'),
 ]

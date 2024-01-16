@@ -9,9 +9,9 @@
 </head>
 <body>
 <main>
-    {% include 'demo_nav.html' with tax_return=tax_return %}
+    {% include 'demo_nav.html' %}
     <h1>DEMO ITEMS</h1>
-    <p class="action-link"><a href="{% url 'demo_create_item' %}">Add Item</a></p>
+    <p><a href="{% url 'demo_create_item' %}">Add Item</a></p>
     <br>
     <table id="id_item_list">
         <tr>

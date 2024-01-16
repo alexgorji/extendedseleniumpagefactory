@@ -1,1 +1,0 @@
-from extendedseleniumpagefactory.extendedpagefactory import *

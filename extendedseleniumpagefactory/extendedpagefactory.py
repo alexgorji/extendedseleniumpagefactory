@@ -1,4 +1,3 @@
-from time import sleep
 import re
 
 from seleniumpagefactory import PageFactory
@@ -14,12 +13,12 @@ class AssertPageMixin:
 
     title = None
 
-    def assert_page(self):
+    def assert_page(self, title_extension=None):
         if not self.title:
             raise AttributeError(f'class attribute: title is not set!')
-        if self.driver.title != self.title:
-            raise AssertPageError(f'title of driver: {self.driver.title} != title of page: {self.title}')
-        assert self.driver.title == self.title
+        title = self.title + title_extension if title_extension else self.title
+        if self.driver.title != title:
+            raise AssertPageError(f'title of driver: {self.driver.title} != title of page: {title}')
 
 
 class NavLocatorsMixin:
@@ -52,14 +51,6 @@ class FormButtonsMixin:
                     "CSS",
                     f"input[value='{' '.join([x.capitalize() for x in key.replace('and', '&').split('_')])}']")
         return output
-
-    def _click(self, loc):
-        def f(timeout=None):
-            if timeout is not None:
-                self.timeout = timeout
-            self.__getattr__(loc).click()
-
-        return f
 
     def __getattr__(self, item):
         search = re.search(r'^click_(.*)', item)
